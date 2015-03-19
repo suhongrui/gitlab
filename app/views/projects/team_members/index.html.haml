@@ -1,0 +1,16 @@
+%h3.page-title
+  访问这个项目的用户
+
+  - if can? current_user, :admin_team_member, @project
+    %span.pull-right
+      = link_to new_project_team_member_path(@project), class: "btn btn-new btn-grouped", title: "新项目成员" do
+        新项目成员
+      = link_to import_project_team_members_path(@project), class: "btn btn-grouped", title: "从另一个项目导入成员" do
+        导入成员
+
+%p.light
+  了解更多关于项目的权限
+  %strong= link_to "这里", help_page_path("permissions", "permissions"), class: "vlink"
+= render "team", members: @project_members
+- if @group
+  = render "group_members"

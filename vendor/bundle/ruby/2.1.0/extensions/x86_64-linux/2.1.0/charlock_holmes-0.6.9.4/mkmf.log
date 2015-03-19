@@ -1,0 +1,671 @@
+have_library: checking for main() in -licui18n... -------------------- yes
+
+"gcc -o conftest -I/usr/include/x86_64-linux-gnu/ruby-2.1.0 -I/usr/include/ruby-2.1.0/ruby/backward -I/usr/include/ruby-2.1.0 -I. -D_FORTIFY_SOURCE=2   -g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wformat -Werror=format-security -fPIC conftest.c  -L. -L/usr/lib/x86_64-linux-gnu -L. -Wl,-Bsymbolic-functions -Wl,-z,relro -L/build/buildd/ruby2.1-2.1.5/debian/lib -fstack-protector -rdynamic -Wl,-export-dynamic     -lruby-2.1  -lpthread -lgmp -ldl -lcrypt -lm   -lc"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: int main(int argc, char **argv)
+4: {
+5:   return 0;
+6: }
+/* end */
+
+"gcc -o conftest -I/usr/include/x86_64-linux-gnu/ruby-2.1.0 -I/usr/include/ruby-2.1.0/ruby/backward -I/usr/include/ruby-2.1.0 -I. -D_FORTIFY_SOURCE=2   -g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wformat -Werror=format-security -fPIC conftest.c  -L. -L/usr/lib/x86_64-linux-gnu -L. -Wl,-Bsymbolic-functions -Wl,-z,relro -L/build/buildd/ruby2.1-2.1.5/debian/lib -fstack-protector -rdynamic -Wl,-export-dynamic     -lruby-2.1 -licui18n  -lpthread -lgmp -ldl -lcrypt -lm   -lc"
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     printf("%p", &t);
+ 9:   }
+10: 
+11:   return 0;
+12: }
+13: int t(void) { void ((*volatile p)()); p = (void ((*)()))main; return 0; }
+/* end */
+
+--------------------
+
+have_library: checking for main() in -licui18n... -------------------- yes
+
+"gcc -o conftest -I/usr/include/x86_64-linux-gnu/ruby-2.1.0 -I/usr/include/ruby-2.1.0/ruby/backward -I/usr/include/ruby-2.1.0 -I. -D_FORTIFY_SOURCE=2   -g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wformat -Werror=format-security -fPIC conftest.c  -L. -L/usr/lib/x86_64-linux-gnu -L. -Wl,-Bsymbolic-functions -Wl,-z,relro -L/build/buildd/ruby2.1-2.1.5/debian/lib -fstack-protector -rdynamic -Wl,-export-dynamic    -licui18n  -lruby-2.1 -licui18n -licui18n  -lpthread -lgmp -ldl -lcrypt -lm   -lc"
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     printf("%p", &t);
+ 9:   }
+10: 
+11:   return 0;
+12: }
+13: int t(void) { void ((*volatile p)()); p = (void ((*)()))main; return 0; }
+/* end */
+
+--------------------
+
+have_header: checking for unicode/ucnv.h... -------------------- yes
+
+"gcc -E -I/usr/include/x86_64-linux-gnu/ruby-2.1.0 -I/usr/include/ruby-2.1.0/ruby/backward -I/usr/include/ruby-2.1.0 -I. -D_FORTIFY_SOURCE=2   -g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wformat -Werror=format-security -fPIC  conftest.c -o conftest.i"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <unicode/ucnv.h>
+/* end */
+
+--------------------
+
+"tar zxvf file-5.08.tar.gz"
+file-5.08/m4/libtool.m4
+file-5.08/m4/ltoptions.m4
+file-5.08/m4/ltsugar.m4
+file-5.08/m4/ltversion.m4
+file-5.08/m4/lt~obsolete.m4
+file-5.08/README
+file-5.08/acinclude.m4
+file-5.08/configure.ac
+file-5.08/aclocal.m4
+file-5.08/Makefile.am
+file-5.08/Makefile.in
+file-5.08/config.h.in
+file-5.08/configure
+file-5.08/AUTHORS
+file-5.08/COPYING
+file-5.08/ChangeLog
+file-5.08/INSTALL
+file-5.08/NEWS
+file-5.08/TODO
+file-5.08/compile
+file-5.08/config.guess
+file-5.08/config.sub
+file-5.08/depcomp
+file-5.08/install-sh
+file-5.08/ltmain.sh
+file-5.08/missing
+file-5.08/MAINT
+file-5.08/src/magic.h
+file-5.08/src/Makefile.am
+file-5.08/src/Makefile.in
+file-5.08/src/asprintf.c
+file-5.08/src/getline.c
+file-5.08/src/getopt_long.c
+file-5.08/src/strlcat.c
+file-5.08/src/strlcpy.c
+file-5.08/src/vasprintf.c
+file-5.08/src/magic.c
+file-5.08/src/apprentice.c
+file-5.08/src/softmagic.c
+file-5.08/src/ascmagic.c
+file-5.08/src/encoding.c
+file-5.08/src/compress.c
+file-5.08/src/is_tar.c
+file-5.08/src/readelf.c
+file-5.08/src/print.c
+file-5.08/src/fsmagic.c
+file-5.08/src/funcs.c
+file-5.08/src/file.h
+file-5.08/src/names.h
+file-5.08/src/readelf.h
+file-5.08/src/tar.h
+file-5.08/src/apptype.c
+file-5.08/src/file_opts.h
+file-5.08/src/elfclass.h
+file-5.08/src/mygetopt.h
+file-5.08/src/cdf.c
+file-5.08/src/cdf_time.c
+file-5.08/src/readcdf.c
+file-5.08/src/cdf.h
+file-5.08/src/file.c
+file-5.08/magic/Magdir/acorn
+file-5.08/magic/Magdir/adi
+file-5.08/magic/Magdir/adventure
+file-5.08/magic/Magdir/allegro
+file-5.08/magic/Magdir/alliant
+file-5.08/magic/Magdir/amanda
+file-5.08/magic/Magdir/amigaos
+file-5.08/magic/Magdir/animation
+file-5.08/magic/Magdir/apl
+file-5.08/magic/Magdir/apple
+file-5.08/magic/Magdir/applix
+file-5.08/magic/Magdir/archive
+file-5.08/magic/Magdir/asterix
+file-5.08/magic/Magdir/att3b
+file-5.08/magic/Magdir/audio
+file-5.08/magic/Magdir/basis
+file-5.08/magic/Magdir/bflt
+file-5.08/magic/Magdir/blcr
+file-5.08/magic/Magdir/blender
+file-5.08/magic/Magdir/blit
+file-5.08/magic/Magdir/bout
+file-5.08/magic/Magdir/bsdi
+file-5.08/magic/Magdir/bsi
+file-5.08/magic/Magdir/btsnoop
+file-5.08/magic/Magdir/c-lang
+file-5.08/magic/Magdir/c64
+file-5.08/magic/Magdir/cad
+file-5.08/magic/Magdir/cafebabe
+file-5.08/magic/Magdir/cddb
+file-5.08/magic/Magdir/chord
+file-5.08/magic/Magdir/cisco
+file-5.08/magic/Magdir/citrus
+file-5.08/magic/Magdir/clarion
+file-5.08/magic/Magdir/claris
+file-5.08/magic/Magdir/clipper
+file-5.08/magic/Magdir/commands
+file-5.08/magic/Magdir/communications
+file-5.08/magic/Magdir/compress
+file-5.08/magic/Magdir/console
+file-5.08/magic/Magdir/convex
+file-5.08/magic/Magdir/cracklib
+file-5.08/magic/Magdir/ctags
+file-5.08/magic/Magdir/dact
+file-5.08/magic/Magdir/database
+file-5.08/magic/Magdir/diamond
+file-5.08/magic/Magdir/diff
+file-5.08/magic/Magdir/digital
+file-5.08/magic/Magdir/dolby
+file-5.08/magic/Magdir/dump
+file-5.08/magic/Magdir/dyadic
+file-5.08/magic/Magdir/ebml
+file-5.08/magic/Magdir/editors
+file-5.08/magic/Magdir/efi
+file-5.08/magic/Magdir/elf
+file-5.08/magic/Magdir/encore
+file-5.08/magic/Magdir/epoc
+file-5.08/magic/Magdir/erlang
+file-5.08/magic/Magdir/esri
+file-5.08/magic/Magdir/fcs
+file-5.08/magic/Magdir/filesystems
+file-5.08/magic/Magdir/flash
+file-5.08/magic/Magdir/fonts
+file-5.08/magic/Magdir/fortran
+file-5.08/magic/Magdir/frame
+file-5.08/magic/Magdir/freebsd
+file-5.08/magic/Magdir/fsav
+file-5.08/magic/Magdir/games
+file-5.08/magic/Magdir/gcc
+file-5.08/magic/Magdir/geo
+file-5.08/magic/Magdir/geos
+file-5.08/magic/Magdir/gimp
+file-5.08/magic/Magdir/gnome-keyring
+file-5.08/magic/Magdir/gnu
+file-5.08/magic/Magdir/gnumeric
+file-5.08/magic/Magdir/grace
+file-5.08/magic/Magdir/graphviz
+file-5.08/magic/Magdir/gringotts
+file-5.08/magic/Magdir/hitachi-sh
+file-5.08/magic/Magdir/hp
+file-5.08/magic/Magdir/human68k
+file-5.08/magic/Magdir/ibm370
+file-5.08/magic/Magdir/ibm6000
+file-5.08/magic/Magdir/iff
+file-5.08/magic/Magdir/images
+file-5.08/magic/Magdir/inform
+file-5.08/magic/Magdir/intel
+file-5.08/magic/Magdir/interleaf
+file-5.08/magic/Magdir/island
+file-5.08/magic/Magdir/ispell
+file-5.08/magic/Magdir/isz
+file-5.08/magic/Magdir/java
+file-5.08/magic/Magdir/jpeg
+file-5.08/magic/Magdir/karma
+file-5.08/magic/Magdir/kde
+file-5.08/magic/Magdir/kml
+file-5.08/magic/Magdir/lecter
+file-5.08/magic/Magdir/lex
+file-5.08/magic/Magdir/lif
+file-5.08/magic/Magdir/linux
+file-5.08/magic/Magdir/lisp
+file-5.08/magic/Magdir/llvm
+file-5.08/magic/Magdir/lua
+file-5.08/magic/Magdir/luks
+file-5.08/magic/Magdir/mach
+file-5.08/magic/Magdir/macintosh
+file-5.08/magic/Magdir/magic
+file-5.08/magic/Magdir/mail.news
+file-5.08/magic/Magdir/maple
+file-5.08/magic/Magdir/mathcad
+file-5.08/magic/Magdir/mathematica
+file-5.08/magic/Magdir/matroska
+file-5.08/magic/Magdir/mcrypt
+file-5.08/magic/Magdir/mercurial
+file-5.08/magic/Magdir/metastore
+file-5.08/magic/Magdir/mime
+file-5.08/magic/Magdir/mips
+file-5.08/magic/Magdir/mirage
+file-5.08/magic/Magdir/misctools
+file-5.08/magic/Magdir/mkid
+file-5.08/magic/Magdir/mlssa
+file-5.08/magic/Magdir/mmdf
+file-5.08/magic/Magdir/modem
+file-5.08/magic/Magdir/motorola
+file-5.08/magic/Magdir/mozilla
+file-5.08/magic/Magdir/msdos
+file-5.08/magic/Magdir/msooxml
+file-5.08/magic/Magdir/msvc
+file-5.08/magic/Magdir/mup
+file-5.08/magic/Magdir/natinst
+file-5.08/magic/Magdir/ncr
+file-5.08/magic/Magdir/netbsd
+file-5.08/magic/Magdir/netscape
+file-5.08/magic/Magdir/netware
+file-5.08/magic/Magdir/news
+file-5.08/magic/Magdir/nitpicker
+file-5.08/magic/Magdir/oasis
+file-5.08/magic/Magdir/ocaml
+file-5.08/magic/Magdir/octave
+file-5.08/magic/Magdir/ole2compounddocs
+file-5.08/magic/Magdir/olf
+file-5.08/magic/Magdir/os2
+file-5.08/magic/Magdir/os400
+file-5.08/magic/Magdir/os9
+file-5.08/magic/Magdir/osf1
+file-5.08/magic/Magdir/palm
+file-5.08/magic/Magdir/parix
+file-5.08/magic/Magdir/parrot
+file-5.08/magic/Magdir/pbm
+file-5.08/magic/Magdir/pdf
+file-5.08/magic/Magdir/pdp
+file-5.08/magic/Magdir/perl
+file-5.08/magic/Magdir/pgp
+file-5.08/magic/Magdir/pkgadd
+file-5.08/magic/Magdir/plan9
+file-5.08/magic/Magdir/plus5
+file-5.08/magic/Magdir/printer
+file-5.08/magic/Magdir/project
+file-5.08/magic/Magdir/psdbms
+file-5.08/magic/Magdir/pulsar
+file-5.08/magic/Magdir/pyramid
+file-5.08/magic/Magdir/python
+file-5.08/magic/Magdir/revision
+file-5.08/magic/Magdir/riff
+file-5.08/magic/Magdir/rinex
+file-5.08/magic/Magdir/rpm
+file-5.08/magic/Magdir/rtf
+file-5.08/magic/Magdir/ruby
+file-5.08/magic/Magdir/sc
+file-5.08/magic/Magdir/sccs
+file-5.08/magic/Magdir/scientific
+file-5.08/magic/Magdir/securitycerts
+file-5.08/magic/Magdir/selinux
+file-5.08/magic/Magdir/sendmail
+file-5.08/magic/Magdir/sequent
+file-5.08/magic/Magdir/sgi
+file-5.08/magic/Magdir/sgml
+file-5.08/magic/Magdir/sharc
+file-5.08/magic/Magdir/sinclair
+file-5.08/magic/Magdir/sisu
+file-5.08/magic/Magdir/sketch
+file-5.08/magic/Magdir/smalltalk
+file-5.08/magic/Magdir/sniffer
+file-5.08/magic/Magdir/softquad
+file-5.08/magic/Magdir/spec
+file-5.08/magic/Magdir/spectrum
+file-5.08/magic/Magdir/sql
+file-5.08/magic/Magdir/ssh
+file-5.08/magic/Magdir/ssl
+file-5.08/magic/Magdir/sun
+file-5.08/magic/Magdir/sysex
+file-5.08/magic/Magdir/tcl
+file-5.08/magic/Magdir/teapot
+file-5.08/magic/Magdir/terminfo
+file-5.08/magic/Magdir/tex
+file-5.08/magic/Magdir/tgif
+file-5.08/magic/Magdir/ti-8x
+file-5.08/magic/Magdir/timezone
+file-5.08/magic/Magdir/troff
+file-5.08/magic/Magdir/tuxedo
+file-5.08/magic/Magdir/typeset
+file-5.08/magic/Magdir/unicode
+file-5.08/magic/Magdir/unknown
+file-5.08/magic/Magdir/uuencode
+file-5.08/magic/Magdir/varied.out
+file-5.08/magic/Magdir/varied.script
+file-5.08/magic/Magdir/vax
+file-5.08/magic/Magdir/vicar
+file-5.08/magic/Magdir/virtual
+file-5.08/magic/Magdir/virtutech
+file-5.08/magic/Magdir/visx
+file-5.08/magic/Magdir/vms
+file-5.08/magic/Magdir/vmware
+file-5.08/magic/Magdir/vorbis
+file-5.08/magic/Magdir/vxl
+file-5.08/magic/Magdir/warc
+file-5.08/magic/Magdir/weak
+file-5.08/magic/Magdir/windows
+file-5.08/magic/Magdir/wireless
+file-5.08/magic/Magdir/wordprocessors
+file-5.08/magic/Magdir/wsdl
+file-5.08/magic/Magdir/xdelta
+file-5.08/magic/Magdir/xenix
+file-5.08/magic/Magdir/xilinx
+file-5.08/magic/Magdir/xo65
+file-5.08/magic/Magdir/xwindows
+file-5.08/magic/Magdir/zilog
+file-5.08/magic/Magdir/zyxel
+file-5.08/magic/Makefile.am
+file-5.08/magic/Makefile.in
+file-5.08/magic/Header
+file-5.08/magic/Localstuff
+file-5.08/tests/README
+file-5.08/tests/Makefile.am
+file-5.08/tests/Makefile.in
+file-5.08/tests/test.c
+file-5.08/tests/gedcom.magic
+file-5.08/tests/gedcom.testfile
+file-5.08/tests/gedcom.result
+file-5.08/doc/Makefile.am
+file-5.08/doc/Makefile.in
+file-5.08/doc/file.man
+file-5.08/doc/magic.man
+file-5.08/doc/libmagic.man
+file-5.08/python/README
+file-5.08/python/Makefile.am
+file-5.08/python/Makefile.in
+file-5.08/python/example.py
+file-5.08/python/magic.py
+file-5.08/python/setup.py
+"./configure --prefix=/home/git/gitlab/vendor/bundle/ruby/2.1.0/gems/charlock_holmes-0.6.9.4/ext/charlock_holmes/dst/ --disable-shared --enable-static --with-pic"
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+checking for a thread-safe mkdir -p... /bin/mkdir -p
+checking for gawk... no
+checking for mawk... mawk
+checking whether make sets $(MAKE)... yes
+checking for builtin ELF support... yes
+checking for ELF core file support... yes
+checking for file formats in man section 5... no
+checking build system type... x86_64-unknown-linux-gnu
+checking host system type... x86_64-unknown-linux-gnu
+checking for style of include used by make... GNU
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking dependency style of gcc... gcc3
+checking how to run the C preprocessor... gcc -E
+checking for grep that handles long lines and -e... /bin/grep
+checking for egrep... /bin/grep -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking minix/config.h usability... no
+checking minix/config.h presence... no
+checking for minix/config.h... no
+checking whether it is safe to define __EXTENSIONS__... yes
+checking for gcc... (cached) gcc
+checking whether we are using the GNU C compiler... (cached) yes
+checking whether gcc accepts -g... (cached) yes
+checking for gcc option to accept ISO C89... (cached) none needed
+checking dependency style of gcc... (cached) gcc3
+checking whether gcc and cc understand -c and -o together... yes
+checking whether ln -s works... yes
+checking for a sed that does not truncate output... /bin/sed
+checking for fgrep... /bin/grep -F
+checking for ld used by gcc... /usr/bin/ld
+checking if the linker (/usr/bin/ld) is GNU ld... yes
+checking for BSD- or MS-compatible name lister (nm)... /usr/bin/nm -B
+checking the name lister (/usr/bin/nm -B) interface... BSD nm
+checking the maximum length of command line arguments... 1572864
+checking whether the shell understands some XSI constructs... yes
+checking whether the shell understands "+="... yes
+checking for /usr/bin/ld option to reload object files... -r
+checking for objdump... objdump
+checking how to recognize dependent libraries... pass_all
+checking for ar... ar
+checking for strip... strip
+checking for ranlib... ranlib
+checking command to parse /usr/bin/nm -B output from gcc object... ok
+checking for dlfcn.h... yes
+checking for objdir... .libs
+checking if gcc supports -fno-rtti -fno-exceptions... no
+checking for gcc option to produce PIC... -fPIC -DPIC
+checking if gcc PIC flag -fPIC -DPIC works... yes
+checking if gcc static flag -static works... yes
+checking if gcc supports -c -o file.o... yes
+checking if gcc supports -c -o file.o... (cached) yes
+checking whether the gcc linker (/usr/bin/ld -m elf_x86_64) supports shared libraries... yes
+checking dynamic linker characteristics... GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking whether stripping libraries is possible... yes
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... no
+checking whether to build static libraries... yes
+checking for ANSI C header files... (cached) yes
+checking whether sys/types.h defines makedev... yes
+checking for sys/wait.h that is POSIX.1 compatible... yes
+checking for stdint.h... (cached) yes
+checking fcntl.h usability... yes
+checking fcntl.h presence... yes
+checking for fcntl.h... yes
+checking locale.h usability... yes
+checking locale.h presence... yes
+checking for locale.h... yes
+checking for stdint.h... (cached) yes
+checking for inttypes.h... (cached) yes
+checking for unistd.h... (cached) yes
+checking utime.h usability... yes
+checking utime.h presence... yes
+checking for utime.h... yes
+checking wchar.h usability... yes
+checking wchar.h presence... yes
+checking for wchar.h... yes
+checking wctype.h usability... yes
+checking wctype.h presence... yes
+checking for wctype.h... yes
+checking limits.h usability... yes
+checking limits.h presence... yes
+checking for limits.h... yes
+checking getopt.h usability... yes
+checking getopt.h presence... yes
+checking for getopt.h... yes
+checking err.h usability... yes
+checking err.h presence... yes
+checking for err.h... yes
+checking sys/mman.h usability... yes
+checking sys/mman.h presence... yes
+checking for sys/mman.h... yes
+checking for sys/stat.h... (cached) yes
+checking for sys/types.h... (cached) yes
+checking sys/utime.h usability... no
+checking sys/utime.h presence... no
+checking for sys/utime.h... no
+checking sys/time.h usability... yes
+checking sys/time.h presence... yes
+checking for sys/time.h... yes
+checking zlib.h usability... yes
+checking zlib.h presence... yes
+checking for zlib.h... yes
+checking for an ANSI C-conforming const... yes
+checking for off_t... yes
+checking for size_t... yes
+checking for struct stat.st_rdev... yes
+checking whether struct tm is in sys/time.h or time.h... time.h
+checking for struct tm.tm_gmtoff... no
+checking for struct tm.tm_zone... no
+checking for tm_zone in struct tm... yes
+checking whether tzname is declared... yes
+checking for tzname... yes
+checking for tm_isdst in struct tm... yes
+checking whether daylight is declared... yes
+checking for daylight... yes
+checking for special C compiler options needed for large files... no
+checking for _FILE_OFFSET_BITS value needed for large files... no
+checking for _LARGEFILE_SOURCE value needed for large files... no
+checking for mbstate_t... yes
+checking for struct option in getopt... yes
+checking for uint8_t... yes
+checking for uint16_t... yes
+checking for uint32_t... yes
+checking for int32_t... yes
+checking for uint64_t... yes
+checking for int64_t... yes
+checking size of long long... 8
+checking for gcc compiler warnings... yes
+checking for mmap... yes
+checking for strerror... yes
+checking for strndup... yes
+checking for strtoul... yes
+checking for mbrtowc... yes
+checking for mkstemp... yes
+checking for utimes... yes
+checking for utime... yes
+checking for wcwidth... yes
+checking for strtof... yes
+checking for fork... yes
+checking for getopt_long... yes
+checking for asprintf... yes
+checking for vasprintf... yes
+checking for strlcpy... no
+checking for strlcat... no
+checking for getline... yes
+checking for gzopen in -lz... yes
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating src/Makefile
+config.status: creating magic/Makefile
+config.status: creating tests/Makefile
+config.status: creating doc/Makefile
+config.status: creating python/Makefile
+config.status: creating config.h
+config.status: executing depfiles commands
+config.status: executing libtool commands
+"patch -p0 < ../file-soft-check.patch"
+patching file src/funcs.c
+"make -C src install"
+make: Entering directory `/home/git/gitlab/vendor/bundle/ruby/2.1.0/gems/charlock_holmes-0.6.9.4/ext/charlock_holmes/src/file-5.08/src'
+  CC     magic.lo
+  CC     apprentice.lo
+apprentice.c: In function 'mkdbname':
+apprentice.c:2371:11: warning: ignoring return value of 'asprintf', declared with attribute warn_unused_result [-Wunused-result]
+   asprintf(&buf, "%.*s.mime%s", (int)(q - fn), fn, ext);
+           ^
+apprentice.c:2378:10: warning: ignoring return value of 'asprintf', declared with attribute warn_unused_result [-Wunused-result]
+  asprintf(&buf, "%.*s%s", (int)(q - fn), fn, ext);
+          ^
+  CC     softmagic.lo
+  CC     ascmagic.lo
+  CC     encoding.lo
+  CC     compress.lo
+compress.c: In function 'uncompressbuf':
+compress.c:402:7: warning: ignoring return value of 'dup', declared with attribute warn_unused_result [-Wunused-result]
+       (void) dup(fd);
+       ^
+compress.c:405:7: warning: ignoring return value of 'dup', declared with attribute warn_unused_result [-Wunused-result]
+       (void) dup(fdin[0]);
+       ^
+compress.c:411:3: warning: ignoring return value of 'dup', declared with attribute warn_unused_result [-Wunused-result]
+   (void) dup(fdout[1]);
+   ^
+  CC     is_tar.lo
+  CC     readelf.lo
+  CC     print.lo
+  CC     fsmagic.lo
+  CC     funcs.lo
+  CC     apptype.lo
+  CC     cdf.lo
+  CC     cdf_time.lo
+  CC     readcdf.lo
+  CC     strlcpy.lo
+  CC     strlcat.lo
+  CCLD   libmagic.la
+  CC     file.o
+  CCLD   file
+make[1]: Entering directory `/home/git/gitlab/vendor/bundle/ruby/2.1.0/gems/charlock_holmes-0.6.9.4/ext/charlock_holmes/src/file-5.08/src'
+test -z "/home/git/gitlab/vendor/bundle/ruby/2.1.0/gems/charlock_holmes-0.6.9.4/ext/charlock_holmes/dst/lib" || /bin/mkdir -p "/home/git/gitlab/vendor/bundle/ruby/2.1.0/gems/charlock_holmes-0.6.9.4/ext/charlock_holmes/dst/lib"
+ /bin/bash ../libtool   --mode=install /usr/bin/install -c   libmagic.la '/home/git/gitlab/vendor/bundle/ruby/2.1.0/gems/charlock_holmes-0.6.9.4/ext/charlock_holmes/dst/lib'
+libtool: install: /usr/bin/install -c .libs/libmagic.lai /home/git/gitlab/vendor/bundle/ruby/2.1.0/gems/charlock_holmes-0.6.9.4/ext/charlock_holmes/dst/lib/libmagic.la
+libtool: install: /usr/bin/install -c .libs/libmagic.a /home/git/gitlab/vendor/bundle/ruby/2.1.0/gems/charlock_holmes-0.6.9.4/ext/charlock_holmes/dst/lib/libmagic.a
+libtool: install: chmod 644 /home/git/gitlab/vendor/bundle/ruby/2.1.0/gems/charlock_holmes-0.6.9.4/ext/charlock_holmes/dst/lib/libmagic.a
+libtool: install: ranlib /home/git/gitlab/vendor/bundle/ruby/2.1.0/gems/charlock_holmes-0.6.9.4/ext/charlock_holmes/dst/lib/libmagic.a
+libtool: finish: PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/sbin" ldconfig -n /home/git/gitlab/vendor/bundle/ruby/2.1.0/gems/charlock_holmes-0.6.9.4/ext/charlock_holmes/dst/lib
+----------------------------------------------------------------------
+Libraries have been installed in:
+   /home/git/gitlab/vendor/bundle/ruby/2.1.0/gems/charlock_holmes-0.6.9.4/ext/charlock_holmes/dst/lib
+
+If you ever happen to want to link against installed libraries
+in a given directory, LIBDIR, you must either use libtool, and
+specify the full pathname of the library, or use the `-LLIBDIR'
+flag during linking and do at least one of the following:
+   - add LIBDIR to the `LD_LIBRARY_PATH' environment variable
+     during execution
+   - add LIBDIR to the `LD_RUN_PATH' environment variable
+     during linking
+   - use the `-Wl,-rpath -Wl,LIBDIR' linker flag
+   - have your system administrator add LIBDIR to `/etc/ld.so.conf'
+
+See any operating system documentation about shared libraries for
+more information, such as the ld(1) and ld.so(8) manual pages.
+----------------------------------------------------------------------
+test -z "/home/git/gitlab/vendor/bundle/ruby/2.1.0/gems/charlock_holmes-0.6.9.4/ext/charlock_holmes/dst/bin" || /bin/mkdir -p "/home/git/gitlab/vendor/bundle/ruby/2.1.0/gems/charlock_holmes-0.6.9.4/ext/charlock_holmes/dst/bin"
+  /bin/bash ../libtool   --mode=install /usr/bin/install -c file '/home/git/gitlab/vendor/bundle/ruby/2.1.0/gems/charlock_holmes-0.6.9.4/ext/charlock_holmes/dst/bin'
+libtool: install: /usr/bin/install -c file /home/git/gitlab/vendor/bundle/ruby/2.1.0/gems/charlock_holmes-0.6.9.4/ext/charlock_holmes/dst/bin/file
+test -z "/home/git/gitlab/vendor/bundle/ruby/2.1.0/gems/charlock_holmes-0.6.9.4/ext/charlock_holmes/dst/include" || /bin/mkdir -p "/home/git/gitlab/vendor/bundle/ruby/2.1.0/gems/charlock_holmes-0.6.9.4/ext/charlock_holmes/dst/include"
+ /usr/bin/install -c -m 644 magic.h '/home/git/gitlab/vendor/bundle/ruby/2.1.0/gems/charlock_holmes-0.6.9.4/ext/charlock_holmes/dst/include'
+make[1]: Leaving directory `/home/git/gitlab/vendor/bundle/ruby/2.1.0/gems/charlock_holmes-0.6.9.4/ext/charlock_holmes/src/file-5.08/src'
+make: Leaving directory `/home/git/gitlab/vendor/bundle/ruby/2.1.0/gems/charlock_holmes-0.6.9.4/ext/charlock_holmes/src/file-5.08/src'
+"make -C magic install"
+make: Entering directory `/home/git/gitlab/vendor/bundle/ruby/2.1.0/gems/charlock_holmes-0.6.9.4/ext/charlock_holmes/src/file-5.08/magic'
+../src/file -C -m magic
+make[1]: Entering directory `/home/git/gitlab/vendor/bundle/ruby/2.1.0/gems/charlock_holmes-0.6.9.4/ext/charlock_holmes/src/file-5.08/magic'
+make[1]: Nothing to be done for `install-exec-am'.
+test -z "/home/git/gitlab/vendor/bundle/ruby/2.1.0/gems/charlock_holmes-0.6.9.4/ext/charlock_holmes/dst/share/misc" || /bin/mkdir -p "/home/git/gitlab/vendor/bundle/ruby/2.1.0/gems/charlock_holmes-0.6.9.4/ext/charlock_holmes/dst/share/misc"
+ /usr/bin/install -c -m 644 magic.mgc '/home/git/gitlab/vendor/bundle/ruby/2.1.0/gems/charlock_holmes-0.6.9.4/ext/charlock_holmes/dst/share/misc'
+make[1]: Leaving directory `/home/git/gitlab/vendor/bundle/ruby/2.1.0/gems/charlock_holmes-0.6.9.4/ext/charlock_holmes/src/file-5.08/magic'
+make: Leaving directory `/home/git/gitlab/vendor/bundle/ruby/2.1.0/gems/charlock_holmes-0.6.9.4/ext/charlock_holmes/src/file-5.08/magic'
+have_library: checking for main() in -lmagic_ext... -------------------- yes
+
+"gcc -o conftest  -I/home/git/gitlab/vendor/bundle/ruby/2.1.0/gems/charlock_holmes-0.6.9.4/ext/charlock_holmes/dst/include -I/usr/include/x86_64-linux-gnu/ruby-2.1.0 -I/usr/include/ruby-2.1.0/ruby/backward -I/usr/include/ruby-2.1.0 -I. -D_FORTIFY_SOURCE=2   -g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wformat -Werror=format-security -fPIC conftest.c  -L. -L/usr/lib/x86_64-linux-gnu -L. -Wl,-Bsymbolic-functions -Wl,-z,relro -L/build/buildd/ruby2.1-2.1.5/debian/lib -fstack-protector -rdynamic -Wl,-export-dynamic -L/home/git/gitlab/vendor/bundle/ruby/2.1.0/gems/charlock_holmes-0.6.9.4/ext/charlock_holmes     -licui18n -licui18n  -lruby-2.1 -lmagic_ext -licui18n -licui18n  -lpthread -lgmp -ldl -lcrypt -lm   -lc"
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     printf("%p", &t);
+ 9:   }
+10: 
+11:   return 0;
+12: }
+13: int t(void) { void ((*volatile p)()); p = (void ((*)()))main; return 0; }
+/* end */
+
+--------------------
+
+have_header: checking for magic.h... -------------------- yes
+
+"gcc -E  -I/home/git/gitlab/vendor/bundle/ruby/2.1.0/gems/charlock_holmes-0.6.9.4/ext/charlock_holmes/dst/include -I/usr/include/x86_64-linux-gnu/ruby-2.1.0 -I/usr/include/ruby-2.1.0/ruby/backward -I/usr/include/ruby-2.1.0 -I. -D_FORTIFY_SOURCE=2   -g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wformat -Werror=format-security -fPIC  conftest.c -o conftest.i"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <magic.h>
+/* end */
+
+--------------------
+

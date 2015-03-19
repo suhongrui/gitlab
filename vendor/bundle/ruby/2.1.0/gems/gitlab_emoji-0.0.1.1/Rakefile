@@ -1,0 +1,5 @@
+spec = Gem::Specification.find_by_name 'emoji'
+load "#{spec.gem_dir}/lib/emoji/tasks/install.rake"
+
+load 'lib/tasks/copy.rake'
+task :default => :copy_emoji

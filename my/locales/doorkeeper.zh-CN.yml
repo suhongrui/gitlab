@@ -1,0 +1,73 @@
+zh-CN:
+  activerecord:
+    errors:
+      models:
+        application:
+          attributes:
+            redirect_uri:
+              fragment_present: '不能含有一个片段。'
+              invalid_uri: '必须是一个有效的URI。'
+              relative_uri: '必须是绝对URI。'
+  mongoid:
+    errors:
+      models:
+        application:
+          attributes:
+            redirect_uri:
+              fragment_present: '不能含有一个片段。'
+              invalid_uri: '必须是一个有效的URI。'
+              relative_uri: '必须是绝对URI。'
+  mongo_mapper:
+    errors:
+      models:
+        application:
+          attributes:
+            redirect_uri:
+              fragment_present: '不能含有一个片段。'
+              invalid_uri: '必须是一个有效的URI。'
+              relative_uri: '必须是绝对URI。'
+  doorkeeper:
+    errors:
+      messages:
+        # Common error messages
+        invalid_request: '缺少必需的参数要求，包括不支持的参数值，或者说是不正常的。'
+        invalid_redirect_uri: 'URI包括重定向无效。'
+        unauthorized_client: '客户端未被授权执行这一请求使用该方法。'
+        access_denied: '资源所有者或授权服务器拒绝请求。'
+        invalid_scope: '所请求的范围是无效的，未知的，或有错误。'
+        server_error: '授权服务器遇到了履行请求阻止它的意外情况。'
+        temporarily_unavailable: '此授权服务器目前无法处理该请求，由于服务器暂时超载或维护。'
+
+        #configuration error messages
+        credential_flow_not_configured: '资源所有者密码凭据流失败，原因是Doorkeeper.configure.resource_owner_from_credentials是未配置的。'
+        resource_owner_authenticator_not_configured: '资源所有者未能找到因Doorkeeper.configure.resource_owner_authenticator是未配置的。'
+
+        # Access grant errors
+        unsupported_response_type: '授权服务器不支持这种反应类型。'
+
+        # Access token errors
+        invalid_client: '客户端身份验证失败，原因未知客户端，包括无客户端身份验证，或不支持的身份验证方法。'
+        invalid_grant: '所提供的授权金是无效的，过期的，撤销，不使用URI的授权请求，或者颁发给另一个客户端重定向匹配。'
+        unsupported_grant_type: '此授权服务器不支持该授权许可类型。'
+
+        # Password Access token errors
+        invalid_resource_owner: '所提供的资源所有者证书是无效的，或资源所有者无法找到'
+
+        invalid_token:
+          revoked: "访问令牌被撤销"
+          expired: "访问令牌已过期"
+          unknown: "访问令牌是无效的"
+    scopes:
+      api: '访问您的API.'
+
+    flash:
+      applications:
+        create:
+          notice: '应用程序已创建。'
+        destroy:
+          notice: '应用程序已删除。'
+        update:
+          notice: '应用程序已更新。'
+      authorized_applications:
+        destroy:
+          notice: '应用程序已撤销。'

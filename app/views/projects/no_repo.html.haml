@@ -1,0 +1,22 @@
+%h2
+  %i.fa.fa-warning
+  没有版本库
+
+%p.slead
+  该项目的版本库不存在。
+  %br
+  这意味着你不能推代码，直到您创建一个空版本库或导入现有的。
+%hr
+
+.no-repo-actions
+  = link_to project_repository_path(@project), method: :post, class: 'btn btn-primary' do
+    创建空的纯仓库
+
+  %strong.prepend-left-10.append-right-10 or
+
+  = link_to new_project_import_path(@project), class: 'btn' do
+    导入资源库
+
+- if can? current_user, :remove_project, @project
+  .prepend-top-20
+    = link_to '删除项目', @project, data: { confirm: remove_project_message(@project)}, method: :delete, class: "btn btn-remove pull-right"

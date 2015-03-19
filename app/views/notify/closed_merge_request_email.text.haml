@@ -1,0 +1,8 @@
+= "合并请求 ##{@merge_request.iid} 关闭了 #{@updated_by.name}"
+
+合并请求网址: #{project_merge_request_url(@merge_request.target_project, @merge_request)}
+
+= merge_path_description(@merge_request, 'to')
+
+作者: #{@merge_request.author_name}
+分配到任务的人: #{@merge_request.assignee_name}

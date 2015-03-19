@@ -1,0 +1,7 @@
+*~
+*.swp
+.rvmrc
+pkg/
+doc/
+publish/
+Gemfile.lock

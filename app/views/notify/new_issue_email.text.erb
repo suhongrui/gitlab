@@ -1,0 +1,5 @@
+新问题已创建。
+
+问题 <%= @issue.iid %>: <%= url_for(project_issue_url(@issue.project, @issue)) %>
+作者:   <%= @issue.author_name %>
+分配到任务的人:  <%= @issue.assignee_name %>

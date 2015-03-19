@@ -1,0 +1,22 @@
+- is_admin = defined?(admin) ? true : false
+.row
+  .col-md-4
+    .panel.panel-default
+      .panel-heading
+        SSH 密钥
+      %ul.well-list
+        %li
+          %span.light 标题:
+          %strong= @key.title
+        %li
+          %span.light 创建于:
+          %strong= @key.created_at.strftime('%Y年%m月%d日')
+
+  .col-md-8
+    %p
+      %span.light 指纹:
+      %strong= @key.fingerprint
+    %pre.well-pre
+      = @key.key
+  .pull-right
+    = link_to '删除', path_to_key(@key, is_admin), data: {confirm: '你确定吗?'}, method: :delete, class: "btn btn-remove delete-key"

@@ -1,0 +1,10 @@
+production:
+  adapter: "postgresql"
+  encoding: "unicode"
+  database: "gitlabhq_production"
+  host: "172.17.0.45"
+  port: 5432
+  username: "gitlab"
+  password: "secretpassword"
+  pool: 10
+

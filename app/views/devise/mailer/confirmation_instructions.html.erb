@@ -1,0 +1,9 @@
+<p>欢迎 <%= @resource.name %>!</p>
+
+<% if @resource.unconfirmed_email.present? %>
+  <p>您可以确认您的电子邮件(<%= @resource.unconfirmed_email %>)通过下面的链接：</p>
+<% else %>
+  <p>您可以确认通过下面的链接您的帐户：</p>
+<% end %>
+
+<p><%= link_to '确认我的帐户', confirmation_url(@resource, confirmation_token: @token) %></p>

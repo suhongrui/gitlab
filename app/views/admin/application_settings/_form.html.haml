@@ -1,0 +1,48 @@
+= form_for @application_setting, url: admin_application_settings_path, html: { class: 'form-horizontal fieldset-form' } do |f|
+  - if @application_setting.errors.any?
+    #error_explanation
+      .alert.alert-danger
+        - @application_setting.errors.full_messages.each do |msg|
+          %p= msg
+
+  %fieldset
+    %legend 特点
+    .form-group
+      = f.label :signup_enabled, '允许注册', class: 'control-label'
+      .col-sm-10
+        = f.check_box :signup_enabled, class: 'checkbox'
+    .form-group
+      = f.label :signin_enabled, '允许登录',class: 'control-label'
+      .col-sm-10
+        = f.check_box :signin_enabled, class: 'checkbox'
+    .form-group
+      = f.label :gravatar_enabled, '允许头像', class: 'control-label'
+      .col-sm-10
+        = f.check_box :gravatar_enabled, class: 'checkbox'
+    .form-group
+      = f.label :twitter_sharing_enabled, "Twitter启用", class: 'control-label'
+      .col-sm-10
+        = f.check_box :twitter_sharing_enabled, class: 'checkbox'
+        %span.help-block 显示用户在Twitter上分享自己新创建的公共或内部项目按钮
+  %fieldset
+    %legend 杂项
+    .form-group
+      = f.label :default_projects_limit, '默认的项目限制', class: 'control-label'
+      .col-sm-10
+        = f.number_field :default_projects_limit, class: 'form-control'
+    .form-group
+      = f.label :default_branch_protection, '默认分支保护', class: 'control-label'
+      .col-sm-10
+        = f.select :default_branch_protection, options_for_select(Gitlab::Access.protection_options, @application_setting.default_branch_protection), {}, class: 'form-control'
+    .form-group
+      = f.label :home_page_url, '主页网址', class: 'control-label'
+      .col-sm-10
+        = f.text_field :home_page_url, class: 'form-control', placeholder: 'http://www.gituse.com'
+        %span.help-block 我们将重定向非登录用户在这个页面
+    .form-group
+      = f.label :sign_in_text, '登录文本', class: 'control-label'
+      .col-sm-10
+        = f.text_area :sign_in_text, class: 'form-control', rows: 4
+        .help-block Markdown 启用
+  .form-actions
+    = f.submit '保存', class: 'btn btn-primary'

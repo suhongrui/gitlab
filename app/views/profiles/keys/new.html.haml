@@ -1,0 +1,16 @@
+%h3.page-title 添加一个 SSH 密钥
+%p.light
+  在这里贴上你的公钥。了解更多关于如何生成的密钥 #{link_to "在SSH帮助页面", help_page_path("ssh", "README")}.
+%hr
+= render 'form'
+
+:javascript
+  $('#key_key').on('focusout', function(){
+    var title = $('#key_title'),
+        val      = $('#key_key').val(),
+        comment = val.match(/^\S+ \S+ (.+)$/);
+
+    if( comment && comment.length > 1 && title.val() == '' ){
+      $('#key_title').val( comment[1] );
+    }
+  });

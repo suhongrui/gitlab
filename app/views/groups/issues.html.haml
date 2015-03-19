@@ -1,0 +1,14 @@
+%h3.page-title
+  问题
+
+%p.light
+  仅问题来自
+  %strong #{@group.name}
+  组列在这里。
+  - if current_user
+    看到所有的问题，你应该访问网页#{link_to '控制面板', issues_dashboard_path}.
+%hr
+
+.append-bottom-20
+  = render 'shared/issuable_filter'
+= render 'shared/issues'

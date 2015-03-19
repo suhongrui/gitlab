@@ -1,0 +1,29 @@
+- if @group.persisted?
+  .form-group
+    = f.label :name, class: 'control-label' do
+      群组名称
+    .col-sm-10
+      = f.text_field :name, placeholder: 'open-source', class: 'form-control'
+
+.form-group
+  = f.label :path, class: 'control-label' do
+    群组路径
+  .col-sm-10
+    .input-group
+      .input-group-addon
+        = root_url
+      = f.text_field :path, placeholder: 'open-source', class: 'form-control',
+          autofocus: local_assigns[:autofocus] || false
+    - if @group.persisted?
+      .bs-callout.bs-callout-danger
+        %ul
+          %li 更改组的路径可以有意想不到的副作用。
+          %li 重命名组路径，将重命名目录的所有相关项目
+          %li 它将改变网页的URL访问组和组项目。
+          %li 它将改变在本组的git路径库。
+
+.form-group.group-description-holder
+  = f.label :description, '详细信息', class: 'control-label'
+  .col-sm-10
+    = f.text_area :description, maxlength: 250,
+        class: 'form-control js-gfm-input', rows: 4

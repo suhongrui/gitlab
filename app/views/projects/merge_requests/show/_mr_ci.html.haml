@@ -1,0 +1,28 @@
+- if @commits.any?
+  .ci_widget.ci-success{style: "display:none"}
+    %i.fa.fa-check
+    %span CI构建传递
+    为 #{@merge_request.last_commit_short_sha}.
+    = link_to "构建页面", ci_build_details_path(@merge_request), :"data-no-turbolink" => "data-no-turbolink"
+
+
+  .ci_widget.ci-failed{style: "display:none"}
+    %i.fa.fa-times
+    %span CI构建失败
+    为 #{@merge_request.last_commit_short_sha}.
+    = link_to "构建页面", ci_build_details_path(@merge_request), :"data-no-turbolink" => "data-no-turbolink"
+
+  - [:running, :pending].each do |status|
+    .ci_widget{class: "ci-#{status}", style: "display:none"}
+      %i.fa.fa-clock-o
+      %span CI 构建 #{status}
+      为 #{@merge_request.last_commit_short_sha}.
+      = link_to "构建页面", ci_build_details_path(@merge_request), :"data-no-turbolink" => "data-no-turbolink"
+
+  .ci_widget
+    %i.fa.fa-spinner
+    检查CI的状态 #{@merge_request.last_commit_short_sha}
+
+  .ci_widget.ci-error{style: "display:none"}
+    %i.fa.fa-times
+    %span 无法连接到CI服务器。请检查您的设置，然后再试一次。

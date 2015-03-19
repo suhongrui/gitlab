@@ -1,0 +1,10 @@
+%p
+  你好 #{@user.name}!
+%p
+  一个新的公共密钥被添加到您的帐户：
+%p
+  标题:
+  %code= @key.title
+%p
+  如果此密钥添加错误，您可以删除它
+  = link_to "SSH 密钥", profile_keys_url

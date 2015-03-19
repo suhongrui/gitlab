@@ -1,0 +1,13 @@
+%h3.page-title
+  合并请求
+
+%p.light
+  只有从合并请求
+  %strong #{@group.name}
+  小组列在这里。
+  - if current_user
+    要查看所有合并请求你应该访问 #{link_to '控制面板', merge_requests_dashboard_path} 页面.
+%hr
+.append-bottom-20
+  = render 'shared/issuable_filter'
+= render 'shared/merge_requests'

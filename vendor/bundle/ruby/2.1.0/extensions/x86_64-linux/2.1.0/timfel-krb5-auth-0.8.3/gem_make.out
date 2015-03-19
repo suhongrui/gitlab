@@ -1,0 +1,17 @@
+/usr/bin/ruby2.1 extconf.rb 
+checking for main() in -lc... yes
+checking for krb5_init_context() in -lkrb5... yes
+checking for krb5.h... yes
+checking for error_message() in -lcom_err... yes
+checking for com_err.h... yes
+creating Makefile
+
+make "DESTDIR=" clean
+
+make "DESTDIR="
+compiling ruby_krb5_auth.c
+linking shared-object krb5_auth.so
+
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 krb5_auth.so ./.gem.20150312-1022-3b55wr
+installing default krb5_auth libraries

@@ -1,0 +1,31 @@
+%html{lang: "zh-CN"}
+  %head
+    %meta{content: "text/html; charset=utf-8", "http-equiv" => "Content-Type"}
+      %title
+        GitUse
+  :css
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+    p.details {
+      font-style:italic;
+      color:#777
+    }
+    .footer p {
+      font-size:small;
+      color:#777
+    }
+    #{add_email_highlight_css}
+  %body
+    %div.content
+      = yield
+    %div.footer{style: "margin-top: 10px;"}
+      %p
+        \—
+        %br
+        - if @target_url
+          #{link_to "查看它在GitUse", @target_url}
+          = email_action @target_url
+        - if @project
+          因为你是项目#{link_to_unless @target_url, @project.name_with_namespace, project_url(@project)} 的团队成员你收到此通知。

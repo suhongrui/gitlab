@@ -1,0 +1,11 @@
+%div.panel.panel-default
+  .panel-heading
+    提交 (#{@commits.count})
+  - if @commits.size > MergeRequestDiff::COMMITS_SAFE_SIZE
+    %ul.well-list
+      - Commit.decorate(@commits.first(MergeRequestDiff::COMMITS_SAFE_SIZE)).each do |commit|
+        = render "projects/commits/inline_commit", commit: commit, project: @project
+      %li.warning-row.unstyled
+        其他 #{@commits.size - MergeRequestDiff::COMMITS_SAFE_SIZE} 提交隐藏以防止发生性能问题。
+  - else
+    %ul.well-list= render Commit.decorate(@commits), project: @project

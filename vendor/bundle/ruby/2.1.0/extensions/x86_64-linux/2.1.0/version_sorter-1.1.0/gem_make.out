@@ -1,0 +1,14 @@
+/usr/bin/ruby2.1 extconf.rb 
+checking for pcre_compile() in -lpcre... no
+creating Makefile
+
+make "DESTDIR=" clean
+
+make "DESTDIR="
+compiling rb_version_sorter.c
+compiling version_sorter.c
+linking shared-object version_sorter.so
+
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 version_sorter.so ./.gem.20150312-1022-16nogi2
+installing default version_sorter libraries

@@ -1,0 +1,6 @@
+再分配 <%= issuable.class.model_name.human.titleize %> <%= issuable.iid %>
+
+<%= url_for([issuable.project, issuable, {only_path: false}]) %>
+
+受让人改变 <%= "从 #{@previous_assignee.name}" if @previous_assignee -%>
+ 到 <%= "#{issuable.assignee_id ? issuable.assignee_name : '未定义'}" %>

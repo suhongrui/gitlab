@@ -1,0 +1,14 @@
+%p
+  你好 #{@user['name']}!
+%p
+  - if Gitlab.config.gitlab.signup_enabled
+    您的帐户已成功创建。
+  - else
+    管理员为您创建一个帐户。现在，你是GitUse公司应用程序中的一员。
+%p
+  登录..........................................
+  %code= @user['email']
+
+- if @user.created_by_id
+  %p
+    = link_to "点击这里设置密码", edit_password_url(@user, :reset_password_token => @token)

@@ -1,0 +1,39 @@
+%h3.page-title 派生项目
+%p.lead
+  单击派生此项目给一个用户或组
+%hr
+
+.fork-namespaces
+  - @namespaces.in_groups_of(6, false) do |group|
+    .row
+      - group.each do |namespace|
+        .col-md-2.col-sm-3
+          - if fork = namespace.find_fork_of(@project)
+            .thumbnail.fork-exists-thumbnail
+              = link_to project_path(fork), title: "访问项目派生", class: 'has_tooltip' do
+                = image_tag namespace_icon(namespace, 200)
+                .caption
+                  %h4=namespace.human_name
+                  %p
+                    = namespace.path
+          - else
+            .thumbnail.fork-thumbnail
+              = link_to project_fork_path(@project, namespace_id: namespace.id), title: "派生这里", method: "POST", class: 'has_tooltip' do
+                = image_tag namespace_icon(namespace, 200)
+                .caption
+                  %h4=namespace.human_name
+                  %p
+                    = namespace.path
+
+  %p.light
+    派生是一个项目库的副本。
+    %br
+    分叉存储库允许您执行变更，而不会影响原来的项目。
+
+.save-project-loader.hide
+  .center
+    %h2
+      %i.fa.fa-spinner.fa-spin
+      派生库
+    %p 请稍等片刻，该页面准备好会自动刷新。
+

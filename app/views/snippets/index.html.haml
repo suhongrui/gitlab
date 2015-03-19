@@ -1,0 +1,17 @@
+%h3.page-title
+  公共代码段
+
+  .pull-right
+    
+    - if current_user
+      = link_to new_snippet_path, class: "btn btn-new btn-grouped", title: "新的代码段" do
+        添加新的代码段
+      = link_to user_snippets_path(current_user), class: "btn btn-grouped"  do
+        我的代码段
+
+%p.light
+  你和其他用户创建的公共代码段在这里列出
+
+%hr
+= render 'snippets'
+

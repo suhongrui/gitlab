@@ -1,0 +1,50 @@
+.mr-state-widget
+  - if @merge_request.source_project.ci_service && @commits.any?
+    .mr-widget-heading
+      = render "projects/merge_requests/show/mr_ci"
+  .mr-widget-body
+    - if @merge_request.open?
+      - if @merge_request.source_branch_exists? && @merge_request.target_branch_exists?
+        = render "projects/merge_requests/show/mr_accept"
+      - else
+        = render "projects/merge_requests/show/no_accept"
+
+    - if @merge_request.closed?
+      %h4
+        已关闭
+        - if @merge_request.closed_event
+          由 #{link_to_member(@project, @merge_request.closed_event.author, avatar: false)}
+          #{time_ago_with_tooltip(@merge_request.closed_event.created_at)}
+      %p 改变是不会合并到目标分支
+
+    - if @merge_request.merged?
+      %h4
+        已合并
+        - if @merge_request.merge_event
+          由 #{link_to_member(@project, @merge_request.merge_event.author, avatar: false)}
+          #{time_ago_with_tooltip(@merge_request.merge_event.created_at)}
+      = render "projects/merge_requests/show/remove_source_branch"
+
+    - if @merge_request.locked?
+      %h4
+        合并正在进行中......
+      %p
+        GitUse尝试现在合并了。在此期间，合并请求被锁定，不能被关闭。
+
+    - unless @commits.any?
+      %h4 没什么可合并
+      %p
+        没有从合并
+        %span.label-branch #{@merge_request.source_branch}
+        到
+        %span.label-branch #{@merge_request.target_branch}
+        %br
+        尝试使用不同的分支或推新代码。
+
+  - if @closes_issues.present? && @merge_request.open?
+    .mr-widget-footer
+      %span
+        %i.fa.fa-check
+        接受这个合并请求将关闭 #{@closes_issues.size == 1 ? 'issue' : 'issues'}
+        = succeed '.' do
+          != gfm(issues_sentence(@closes_issues))

@@ -1,0 +1,78 @@
+%h3.page-title
+  账户设置
+%p.light
+  你可以在这里更改您的用户名和私人令牌。
+  - if current_user.ldap_user?
+    某些选项的LDAP帐号不可用
+%hr
+
+
+.account-page
+  %fieldset.update-token
+    %legend
+      私人令牌
+    %div
+      = form_for @user, url: reset_private_token_profile_path, method: :put do |f|
+        .data
+          %p
+            您的私人令牌用于访问应用程序的资源不需要认证。
+            %br
+            它可用于原子传或提供API。
+            %span.cred
+              保留它机密！
+
+          %p.cgray
+            - if current_user.private_token
+              = text_field_tag "token", current_user.private_token, class: "form-control"
+              %div
+                = f.submit '重设', data: { confirm: "您确定吗？" }, class: "btn btn-primary btn-build-token"
+            - else
+              %span 你尚且还没有一个令牌。点击生成解决它。
+              = f.submit '生成', class: "btn success btn-build-token"
+
+
+  - if show_profile_social_tab?
+    %fieldset
+      %legend 社交帐户
+      .oauth_select_holder.append-bottom-10
+        %p 点击图标来激活的登录信息有下列服务之一
+        - enabled_social_providers.each do |provider|
+          %span{class: oauth_active_class(provider) }
+            = link_to authbutton(provider, 32), omniauth_authorize_path(User, provider)
+
+  - if show_profile_username_tab?
+    %fieldset.update-username
+      %legend
+        用户名
+      = form_for @user, url: update_username_profile_path,  method: :put, remote: true do |f|
+        %p
+          更改用户名会改变路径的所有个人项目！
+        %div
+          = f.text_field :username, required: true, class: 'form-control'
+          &nbsp;
+        .loading-gif.hide
+          %p
+            %i.fa.fa-spinner.fa-spin
+            保存新的用户名
+        %p.light
+          = user_url(@user)
+        %div
+          = f.submit '保存用户名', class: "btn btn-save"
+
+  - if show_profile_remove_tab?
+    %fieldset.remove-account
+      %legend
+        删除帐户
+      %div
+        %p 删除帐户具有以下效果：
+        %ul
+          %li 类似编写问题，摘录的所有用户的内容，评论将被删除
+          - rp = current_user.personal_projects.count
+          - unless rp.zero?
+            %li 您的 #{pluralize rp, ''} 个项目将被删除，不能恢复
+          - if current_user.solo_owned_groups.present?
+            %li
+              以下组将被放弃。你应该转移或删除它们：
+              %strong #{current_user.solo_owned_groups.map(&:name).join(', ')}
+        = link_to '删除帐户', user_registration_path, data: { confirm: "删除 #{current_user.name}? 您确定吗?" }, method: :delete, class: "btn btn-remove"
+

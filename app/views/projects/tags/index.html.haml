@@ -1,0 +1,30 @@
+= render "projects/commits/head"
+
+%h3.page-title
+  Git标签
+  - if can? current_user, :push_code, @project
+    .pull-right
+      = link_to new_project_tag_path(@project), class: 'btn btn-create new-tag-btn' do
+        %i.fa.fa-add-sign
+        新标签
+
+%p.light
+  标签给标志着历史具体问题作为是很重要的功能
+%hr
+
+.tags
+  - unless @tags.empty?
+    %ul.bordered-list
+      - @tags.each do |tag|
+        = render 'tag', tag: @repository.find_tag(tag)
+
+    = paginate @tags, theme: 'gitlab'
+
+  - else
+    .nothing-here-block
+      存储库没有标记呢。
+      %br
+      %small
+        使用git tag命令的来添加一个新的：
+        %br
+        %span.monospace git tag -a v1.4 -m 'version 1.4'

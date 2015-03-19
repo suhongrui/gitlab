@@ -1,0 +1,10 @@
+项目是搬到另一个位置
+
+该项目现在是在位于 
+<%= project_url(@project) %>
+
+
+要更新远程URL在本地存储库运行（SSH）：
+  git remote set-url origin <%= @project.ssh_url_to_repo %>
+或者是http(s):
+  git remote set-url origin <%= @project.http_url_to_repo %>

@@ -1,0 +1,9 @@
+对于问题新评论 <%= @issue.iid %>
+
+<%= url_for(project_issue_url(@issue.project, @issue, anchor: "note_#{@note.id}")) %>
+
+
+作者: <%= @note.author_name %>
+
+<%= @note.note %>
+

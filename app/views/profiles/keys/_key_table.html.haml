@@ -1,0 +1,19 @@
+- is_admin = defined?(admin) ? true : false
+.panel.panel-default
+  - if @keys.any?
+    %table.table
+      %thead.panel-heading
+        %tr
+          %th 标题
+          %th 指纹
+          %th 新增于
+          %th
+      %tbody
+        - @keys.each do |key|
+          = render 'profiles/keys/key', key: key, is_admin: is_admin
+  - else
+    .nothing-here-block
+      - if is_admin
+        用户没有SSH密钥
+      - else
+        没有SSH密钥访问您的帐户。

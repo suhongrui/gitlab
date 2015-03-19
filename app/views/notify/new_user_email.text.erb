@@ -1,0 +1,8 @@
+你好 <%= @user.name %>!
+
+管理员为您创建一个帐户。现在，你是GitUse公司应用程序中的一员。
+
+登录.................. <%= @user.email %>
+<% if @user.created_by_id %>
+  <%= link_to "点击这里设置你的密码", edit_password_url(@user, :reset_password_token => @token) %>
+<% end %>

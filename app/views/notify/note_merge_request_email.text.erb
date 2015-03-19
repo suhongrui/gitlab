@@ -1,0 +1,9 @@
+对于合并请求新评论 <%= @merge_request.iid %>
+
+<%= url_for(project_merge_request_url(@merge_request.target_project, @merge_request, anchor: "note_#{@note.id}")) %>
+
+
+<%= @note.author_name %>
+
+<%= @note.note %>
+

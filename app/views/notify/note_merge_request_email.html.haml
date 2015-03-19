@@ -1,0 +1,7 @@
+- if @note.diff_file_name
+  %p.details
+    对差异的新评论
+    = link_to @note.diff_file_name, @target_url
+    \:
+
+= render 'note_message'

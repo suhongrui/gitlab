@@ -1,0 +1,4 @@
+%p
+  = "你被授予 #{@membership.human_access} 访问组"
+  = link_to group_url(@group) do
+    = @group.name

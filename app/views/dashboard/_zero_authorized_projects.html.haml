@@ -1,0 +1,52 @@
+%h3.page-title 欢迎来到GitUse！
+%p.light 自托管Git的管理应用程序。
+%hr
+%div
+  .dashboard-intro-icon
+    %i.fa.fa-bookmark-o
+  .dashboard-intro-text
+    %p.slead
+      您没有访问任何项目现在。
+      %br
+      - if current_user.can_create_project?
+        您可以创建最多
+        %strong= pluralize(current_user.projects_limit, "") + "项目."
+      - else
+        如果你被添加到一个项目，它将被显示在这里。
+
+    - if current_user.can_create_project?
+      .link_holder
+        = link_to new_project_path, class: "btn btn-new" do
+          %i.fa.fa-plus
+          新建项目
+
+- if current_user.can_create_group?
+  %hr
+  %div
+    .dashboard-intro-icon
+      %i.fa.fa-users
+    .dashboard-intro-text
+      %p.slead
+        您可以创建一个组几个相关的项目。
+        %br
+        组是管理项目和成员的最佳途径。
+      .link_holder
+        = link_to new_group_path, class: "btn btn-new" do
+          %i.fa.fa-plus
+          新的群组
+
+-if @publicish_project_count > 0
+  %hr
+  %div
+    .dashboard-intro-icon
+      %i.fa.fa-globe
+    .dashboard-intro-text
+      %p.slead
+        还有
+        %strong= @publicish_project_count
+        公共项目在此服务器上。
+        %br
+        公共项目是一个简单的方法来让大家都只读访问。
+      .link_holder
+        = link_to trending_explore_projects_path, class: "btn btn-new" do
+          浏览公益项目

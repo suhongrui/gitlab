@@ -1,0 +1,79 @@
+%h3.page-title
+  通知设置
+%p.light
+  这些都是全局通知设置。
+%hr
+
+
+= form_for @user, url: profile_notifications_path, method: :put, html: { class: 'update-notifications form-horizontal global-notifications-form' } do |f|
+  -if @user.errors.any?
+    %div.alert.alert-danger
+      %ul
+        - @user.errors.full_messages.each do |msg|
+          %li= msg
+
+  = hidden_field_tag :notification_type, 'global'
+
+  .form-group
+    = f.label :notification_email, '通知邮箱', class: "control-label"
+    .col-sm-10
+      = f.select :notification_email, @user.all_emails, { include_blank: false }, class: "form-control"
+
+  .form-group
+    = f.label :notification_level, '通知等级', class: 'control-label'
+    .col-sm-10
+      .radio
+        = f.label :notification_level, value: Notification::N_DISABLED do
+          = f.radio_button :notification_level, Notification::N_DISABLED
+          .level-title
+            禁用
+          %p 你不会通过电子邮件得到任何通知
+
+      .radio
+        = f.label :notification_level, value: Notification::N_MENTION do
+          = f.radio_button :notification_level, Notification::N_MENTION
+          .level-title
+            提及
+          %p 您将收到只针对评论@mentioned中提到你通知
+
+      .radio
+        = f.label :notification_level, value: Notification::N_PARTICIPATING do
+          = f.radio_button :notification_level, Notification::N_PARTICIPATING
+          .level-title
+            参与
+          %p 你只会从相关的资源接收通知（例如，从您提交或分配问题）
+
+      .radio
+        = f.label :notification_level, value: Notification::N_WATCH do
+          = f.radio_button :notification_level, Notification::N_WATCH
+          .level-title
+            关注
+          %p 您将收到来自在项目中加入的所有通知
+
+  .form-actions
+    = f.submit '保存更改', class: "btn btn-save"
+
+.clearfix
+  %hr
+.row.all-notifications
+  .col-md-6
+    %p
+      你也可以每个组或每个项目指定通知级别。
+      %br
+      默认情况下，所有的项目和团体使用的通知级别以上的设置。
+    %h4 群组:
+    %ul.bordered-list
+      - @group_members.each do |users_group|
+        - notification = Notification.new(users_group)
+        = render 'settings', type: 'group', membership: users_group, notification: notification
+
+  .col-md-6
+    %p
+      每一个群体，你属于项目指定通知级别，
+      %br
+      你需要对项目本身的一员，不仅是它的群体。
+    %h4 项目:
+    %ul.bordered-list
+      - @project_members.each do |project_member|
+        - notification = Notification.new(project_member)
+        = render 'settings', type: 'project', membership: project_member, notification: notification

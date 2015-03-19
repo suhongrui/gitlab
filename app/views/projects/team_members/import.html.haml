@@ -1,0 +1,14 @@
+%h3.page-title
+  从另一个项目导入成员
+%p.light
+  只有项目成员将被导入。组成员将被跳过。
+%hr
+= form_tag apply_import_project_team_members_path(@project), method: 'post', class: 'form-horizontal' do
+  .form-group
+    = label_tag :source_project_id, "项目", class: 'control-label'
+    .col-sm-10= select_tag(:source_project_id, options_from_collection_for_select(current_user.authorized_projects, :id, :name_with_namespace), prompt: "选择项目", class: "select2 lg", required: true)
+
+  .form-actions
+    = button_tag '导入项目成员', class: "btn btn-create"
+    = link_to "取消", project_team_index_path(@project), class: "btn btn-cancel"
+

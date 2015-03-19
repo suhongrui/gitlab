@@ -1,0 +1,10 @@
+%h3.page-title
+  帐户历史记录
+%p.light
+  您的帐户创建的所有事件都在这里列出
+%hr
+.profile_history
+  = render @events
+%hr
+= paginate @events, theme: "gitlab"
+

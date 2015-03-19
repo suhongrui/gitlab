@@ -1,0 +1,84 @@
+= render 'head'
+
+%p.lead
+  提交统计信息
+  %strong #{@repository.root_ref}
+  #{@commits_graph.start_date.strftime('%m月%d日')} - #{@commits_graph.end_date.strftime('%m月%d日')}
+
+.row
+  .col-md-6
+    %ul
+      %li
+        %p.lead
+          提交
+          %strong #{@commits_graph.commits.size}
+          期间
+          %strong #{@commits_graph.duration}
+          天
+      %li
+        %p.lead
+          平均每天提交
+          %strong #{@commits_graph.commit_per_day}
+      %li
+        %p.lead
+          贡献作者
+          %strong #{@commits_graph.authors}
+  .col-md-6
+    %div
+      %p.slead
+        当月每天提交
+      %canvas#month-chart{width: 800, height: 400}
+.row
+  .col-md-6
+    %div
+      %p.slead
+        每天每小时提交（PRC）
+      %canvas#hour-chart{width: 800, height: 400}
+  .col-md-6
+    %div
+      %p.slead
+        每个星期提交
+      %canvas#weekday-chart{width: 800, height: 400}
+
+:coffeescript
+  data = {
+    labels : #{@commits_per_time.keys.to_json},
+    datasets : [{
+      fillColor : "rgba(220,220,220,0.5)",
+      strokeColor : "rgba(220,220,220,1)",
+      pointColor : "rgba(220,220,220,1)",
+      pointStrokeColor : "#EEE",
+      data : #{@commits_per_time.values.to_json}
+    }]
+  }
+
+  ctx = $("#hour-chart").get(0).getContext("2d");
+  new Chart(ctx).Line(data,{"scaleOverlay": true, responsive: true});
+
+  data = {
+    labels : #{@commits_per_week_days.keys.to_json},
+    datasets : [{
+      fillColor : "rgba(220,220,220,0.5)",
+      strokeColor : "rgba(220,220,220,1)",
+      pointColor : "rgba(220,220,220,1)",
+      pointStrokeColor : "#EEE",
+      data : #{@commits_per_week_days.values.to_json}
+    }]
+  }
+
+  ctx = $("#weekday-chart").get(0).getContext("2d");
+  new Chart(ctx).Line(data,{"scaleOverlay": true, responsive: true});
+
+  data = {
+    labels : #{@commits_per_month.keys.to_json},
+    datasets : [{
+      fillColor : "rgba(220,220,220,0.5)",
+      strokeColor : "rgba(220,220,220,1)",
+      pointColor : "rgba(220,220,220,1)",
+      pointStrokeColor : "#EEE",
+      data : #{@commits_per_month.values.to_json}
+    }]
+  }
+
+  ctx = $("#month-chart").get(0).getContext("2d");
+  new Chart(ctx).Line(data,{"scaleOverlay": true, responsive: true});

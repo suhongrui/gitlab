@@ -1,0 +1,9 @@
+提交的新评论<%= @commit.short_id %>
+
+<%= url_for(project_commit_url(@note.project, id: @commit.id, anchor: "note_#{@note.id}")) %>
+
+
+作者: <%= @note.author_name %>
+
+<%= @note.note %>
+

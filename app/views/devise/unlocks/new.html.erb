@@ -1,0 +1,12 @@
+<h2>重新发送指令解锁</h2>
+
+<%= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div><%= f.label :email %><br />
+  <%= f.email_field :email %></div>
+
+  <div><%= f.submit "重新发送指令解锁" %></div>
+<% end %>
+
+<%= render partial: "devise/shared/links" %>

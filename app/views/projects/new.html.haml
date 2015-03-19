@@ -1,0 +1,108 @@
+.project-edit-container
+  .project-edit-errors
+    = render 'projects/errors'
+  .project-edit-content
+
+    = form_for @project, html: { class: 'new_project form-horizontal' } do |f|
+      .form-group.project-name-holder
+        = f.label :path, class: 'control-label' do
+          %strong 项目路径
+        .col-sm-10
+          .input-group
+            = f.text_field :path, placeholder: "my-awesome-project", class: "form-control", tabindex: 1, autofocus: true
+            .input-group-addon
+              \.git
+
+      - if current_user.can_select_namespace?
+        .form-group
+          = f.label :namespace_id, class: 'control-label' do
+            %span 命名空间
+          .col-sm-10
+            = f.select :namespace_id, namespaces_options(params[:namespace_id] || :current_user), {}, {class: 'select2', tabindex: 2}
+
+      %hr
+      .js-toggle-container
+        .form-group
+          .col-sm-2
+          .col-sm-10
+            = link_to "#", class: 'js-toggle-button' do
+              %i.fa.fa-upload
+              %span 导入现有的通过URL版本库
+        .js-toggle-content.hide
+          .form-group.import-url-data
+            = f.label :import_url, class: 'control-label' do
+              %span 导入现有的git软件库
+            .col-sm-10
+              = f.text_field :import_url, class: 'form-control', placeholder: 'https://github.com/randx/six.git'
+              .bs-callout.bs-callout-info
+                该URL必须是公开访问，或者你可以添加一个用户名和密码是这样的： https://username:password@gitlab.com/company/project.git.
+                %br
+                4分钟后导入会超时。对于大存储库，使用克隆/推组合。对于SVN仓库，导入 #{link_to "此移植从SVN文档。", "http://doc.gitlab.com/ce/workflow/migrating_from_svn.html"}
+
+      .project-import.form-group
+        .col-sm-2
+        .col-sm-10
+          - if github_import_enabled?
+            = link_to status_import_github_path do
+              %i.fa.fa-github
+              从GitHub上导入项目
+          - else
+            = link_to '#', class: 'how_to_import_link light' do
+              %i.fa.fa-github
+              从GitHub上导入项目
+            = render 'github_import_modal'
+
+      .project-import.form-group
+        .col-sm-2
+        .col-sm-10
+          - if gitlab_import_enabled?
+            = link_to status_import_gitlab_path do
+              %i.fa.fa-heart
+              从GitLab.com上导入项目
+          - elsif request.host != 'gitlab.com'
+            = link_to '#', class: 'how_to_import_link light' do
+              %i.fa.fa-heart
+              从GitLab.com上导入项目
+            = render 'gitlab_import_modal'
+
+      .project-import.form-group
+        .col-sm-2
+        .col-sm-10
+          = link_to new_import_gitorious_path do
+            %i.fa.fa-heart
+            从Gitorious.org导入项目
+
+      %hr.prepend-botton-10
+
+      .form-group
+        = f.label :description, class: 'control-label' do
+          描述
+          %span.light (可选)
+        .col-sm-10
+          = f.text_area :description, placeholder: "真棒项目", class: "form-control", rows: 3, maxlength: 250, tabindex: 3
+      = render "visibility_level", f: f, visibility_level: gitlab_config.default_projects_features.visibility_level, can_change_visibility_level: true
+
+      .form-actions
+        = f.submit '创建项目', class: "btn btn-create project-submit", tabindex: 4
+
+        - if current_user.can_create_group?
+          .pull-right
+            .light
+              需要组一个队伍数项目的依赖？
+              = link_to new_group_path, class: "btn btn-tiny" do
+                创建一个组
+
+.save-project-loader.hide
+  .center
+    %h2
+      %i.fa.fa-spinner.fa-spin
+      创建项目和版本库。
+    %p 请稍等片刻，该页面准备好会自动刷新。
+
+:coffeescript
+  $ ->
+    $('.how_to_import_link').bind 'click', (e) ->
+      e.preventDefault()
+      import_modal = $(this).parent().find(".modal").show()
+    $('.modal-header .close').bind 'click', ->
+      $(".modal").hide()

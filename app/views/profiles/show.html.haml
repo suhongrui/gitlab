@@ -1,0 +1,97 @@
+%h3.page-title
+  个人简介设置
+%p.light
+  显示在你的个人信息。
+  - if current_user.ldap_user?
+    某些选项的LDAP帐号不可用
+%hr
+
+
+
+= form_for @user, url: profile_path, method: :put, html: { multipart: true, class: "edit_user form-horizontal" }, authenticity_token: true do |f|
+  -if @user.errors.any?
+    %div.alert.alert-danger
+      %ul
+        - @user.errors.full_messages.each do |msg|
+          %li= msg
+  .row
+    .col-md-7
+      .form-group
+        = f.label :name, '名称', class: "control-label"
+        .col-sm-10
+          = f.text_field :name, class: "form-control", required: true
+          %span.help-block 输入你的名字，所以你知道的人可以识别你。
+
+      .form-group
+        = f.label :email, '邮箱', class: "control-label"
+        .col-sm-10
+          - if @user.ldap_user?
+            = f.text_field :email, class: "form-control", required: true, readonly: true
+            %span.help-block.light
+              LDAP用户电子邮件是只读
+          - else
+            - if @user.temp_oauth_email?
+              = f.text_field :email, class: "form-control", required: true, value: nil
+            - else
+              = f.text_field :email, class: "form-control", required: true
+            - if @user.unconfirmed_email.present?
+              %span.help-block
+                请点击电子邮件中确认链接然后再继续，它被送往
+                %strong #{@user.unconfirmed_email}
+
+            - else
+              %span.help-block 我们还使用电子邮件的虚拟形象检测，如果没有虚拟形象上传。
+      .form-group
+        = f.label :skype, '腾讯QQ', class: "control-label"
+        .col-sm-10= f.text_field :skype, class: "form-control"
+      .form-group
+        = f.label :linkedin, '微信号', class: "control-label"
+        .col-sm-10= f.text_field :linkedin, class: "form-control"
+      .form-group
+        = f.label :twitter, '微博号', class: "control-label"
+        .col-sm-10= f.text_field :twitter, class: "form-control"
+      .form-group
+        = f.label :website_url, '网站', class: "control-label"
+        .col-sm-10= f.text_field :website_url, class: "form-control"
+      .form-group
+        = f.label :bio, '简介', class: "control-label"
+        .col-sm-10
+          = f.text_area :bio, rows: 6, class: "form-control", maxlength: 250
+          %span.help-block 用少于250个字符来告诉我们关于你的简介。
+
+    .col-md-5
+      .light-well
+        = image_tag avatar_icon(@user.email, 160), alt: '', class: 'avatar s160'
+
+        .clearfix
+          .profile-avatar-form-option
+            %p.light
+              - if @user.avatar?
+                你可以在这里改变你的头像
+                - if Gitlab.config.gravatar.enabled
+                  %br
+                  或删除当前虚拟形象恢复到 #{link_to "gravatar.com", "http://gravatar.com"}
+              - else
+                你可以在这里上传头像
+                - if Gitlab.config.gravatar.enabled
+                  %br
+                  或改变 #{link_to "gravatar.com", "http://gravatar.com"}
+            %hr
+            %a.choose-btn.btn.btn-small.js-choose-user-avatar-button
+              %i.fa.fa-paperclip
+              %span 选择文件...
+            &nbsp;
+            %span.file_name.js-avatar-filename 文件名称...
+            = f.file_field :avatar, class: "js-user-avatar-input hidden"
+            .light 允许的最大文件大小为200KB.
+            - if @user.avatar?
+              %hr
+              = link_to '删除头像', profile_avatar_path, data: { confirm: "虚拟形象将被删除。你确定吗？"}, method: :delete, class: "btn btn-remove btn-small remove-avatar"
+
+      - if @user.public_profile?
+        .bs-callout.bs-callout-info
+          %h4 公开信息
+          %p 您的个人资料是公开可见的，因为你加入公共项目
+
+  .form-actions
+    = f.submit '保存更改', class: "btn btn-save"

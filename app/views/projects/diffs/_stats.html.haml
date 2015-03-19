@@ -1,0 +1,41 @@
+.js-toggle-container
+  .commit-stat-summary
+    显示
+    %strong.cdark #{pluralize(diffs.count, "") + '更改的文件'}
+    - if current_controller?(:commit)
+      - unless @commit.has_zero_stats?
+        用
+        %strong.cgreen #{@commit.stats.additions} 添加
+        和
+        %strong.cred #{@commit.stats.deletions} 删除
+    &nbsp;
+    = link_to '#', class: 'btn btn-small js-toggle-button' do
+      显示差异统计信息
+      %i.fa.fa-chevron-down
+  .file-stats.js-toggle-content.hide
+    %ul.bordered-list
+      - diffs.each_with_index do |diff, i|
+        %li
+          - if diff.deleted_file
+            %span.deleted-file
+              %a{href: "#diff-#{i}"}
+                %i.fa.fa-minus
+                = diff.old_path
+          - elsif diff.renamed_file
+            %span.renamed-file
+              %a{href: "#diff-#{i}"}
+                %i.fa.fa-minus
+                = diff.old_path
+                \->
+                = diff.new_path
+          - elsif diff.new_file
+            %span.new-file
+              %a{href: "#diff-#{i}"}
+                %i.fa.fa-plus
+                = diff.new_path
+          - else
+            %span.edit-file
+              %a{href: "#diff-#{i}"}
+                %i.fa.fa-adjust
+                = diff.new_path
+

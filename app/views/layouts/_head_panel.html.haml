@@ -1,0 +1,47 @@
+%header.navbar.navbar-fixed-top.navbar-gitlab
+  .navbar-inner
+    .container
+      %div.app_logo
+        = link_to root_path, class: "home has_bottom_tooltip", title: "控制面板" do
+          %h1 GITUSE
+      %h1.title= title
+
+      %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", type: "button"}
+        %span.sr-only 切换导航
+        %i.fa.fa-bars
+
+      .navbar-collapse.collapse
+        %ul.nav.navbar-nav
+          %li.hidden-sm.hidden-xs
+            = render "layouts/search"
+          %li.visible-sm.visible-xs
+            = link_to search_path, title: "搜索", class: 'has_bottom_tooltip', 'data-original-title' => '搜索区域' do
+              %i.fa.fa-search
+          %li
+            = link_to help_path, title: '帮助', class: 'has_bottom_tooltip', 'data-original-title' => '帮助'  do
+              %i.fa.fa-question-circle
+          %li
+            = link_to explore_root_path, title: "浏览", class: 'has_bottom_tooltip', 'data-original-title' => '公共区域' do
+              %i.fa.fa-globe
+          %li
+            = link_to user_snippets_path(current_user), title: "我的摘录", class: 'has_bottom_tooltip', 'data-original-title' => '我的摘录' do
+              %i.fa.fa-clipboard
+          - if current_user.is_admin?
+            %li
+              = link_to admin_root_path, title: "管理区域", class: 'has_bottom_tooltip', 'data-original-title' => '管理区域' do
+                %i.fa.fa-cogs
+          - if current_user.can_create_project?
+            %li
+              = link_to new_project_path, title: "新的项目", class: 'has_bottom_tooltip', 'data-original-title' => '新的项目'  do
+                %i.fa.fa-plus
+          %li
+            = link_to profile_path, title: "个人档案", class: 'has_bottom_tooltip', 'data-original-title' => '个人档案设置"'  do
+              %i.fa.fa-user
+          %li
+            = link_to destroy_user_session_path, class: "logout", method: :delete, title: "注销", class: 'has_bottom_tooltip', 'data-original-title' => '注销'  do
+              %i.fa.fa-sign-out
+          %li.hidden-xs
+            = link_to current_user, class: "profile-pic", id: 'profile-pic' do
+              = image_tag avatar_icon(current_user.email, 60), alt: '活跃用户'
+
+= render 'shared/outdated_browser'

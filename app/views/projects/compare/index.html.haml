@@ -1,0 +1,15 @@
+= render "projects/commits/head"
+
+%h3.page-title
+  比较视图
+%p.slead
+  比较分支，标签或提交范围。
+  %br
+  填写输入字段提交ID类似
+  %code.label-branch 4eedf23
+  或分支/标签名类似
+  %code.label-branch master
+  并按下了提交列表和比较代码差异。
+  %br
+  显示变化<b>从</b>此版本第一个字段<b>到</b>此版本的第二字段中。
+= render "form"

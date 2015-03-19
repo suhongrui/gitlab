@@ -1,0 +1,10 @@
+%p
+  你好 #{@user.name}!
+%p
+  一个新的电子邮件被添加到您的帐户：
+%p
+  邮箱:
+  %code= @email.email
+%p
+  如果这个邮箱添加错误了，你可以从这里删除：
+  = link_to "邮箱", profile_emails_url

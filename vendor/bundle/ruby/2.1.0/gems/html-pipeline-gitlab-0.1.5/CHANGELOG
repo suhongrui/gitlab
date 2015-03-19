@@ -1,0 +1,9 @@
+v 0.1.2
+  - Use sanitize 2.1 because GitLab has a dependency to it
+
+v 0.1.1
+  - Add sanitization filter to markdown pipeline
+
+v 0.1.0
+  - Initial public release
+  - Add GitlabEmoji filter

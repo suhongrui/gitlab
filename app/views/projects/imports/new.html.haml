@@ -1,0 +1,20 @@
+%h3.page-title
+  - if @project.import_failed?
+    导入失败。重试？
+  - else
+    导入仓库
+
+%hr
+
+= form_for @project, url: project_import_path(@project), method: :post, html: { class: 'form-horizontal' } do |f|
+  .form-group.import-url-data
+    = f.label :import_url, class: 'control-label' do
+      %span 导入现有的git repo
+    .col-sm-10
+      = f.text_field :import_url, class: 'form-control', placeholder: 'https://github.com/randx/six.git'
+      .bs-callout.bs-callout-info
+        这个URL必须公开访问或你可以添加一个用户名和密码，像这样： https://username:password@gitlab.com/company/project.git.
+        %br
+        4分钟后导入会超时。对于大存储库，使用克隆/推组合。对于SVN仓库，请检查 #{link_to "从这种移植SVN文档。", "http://doc.gitlab.com/ce/workflow/migrating_from_svn.html"}
+  .form-actions
+    = f.submit '开始导入', class: "btn btn-create", tabindex: 4

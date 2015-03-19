@@ -1,0 +1,30 @@
+%h3 #{@author.name} 推送到 #{@branch} 在 #{link_to @project.name_with_namespace, project_url(@project)}
+
+%h4 提交:
+
+%ul
+  - @commits.each do |commit|
+    %li
+      %strong #{link_to commit.short_id, project_commit_url(@project, commit)}
+      %div
+        %span 由 #{commit.author_name}
+        %i 在 #{commit.committed_date.strftime("%Y-%m-%dT%H:%M:%SZ")}
+      %pre #{commit.safe_message}
+
+%h4 变更:
+- @diffs.each do |diff|
+  %li
+    %strong
+      - if diff.old_path == diff.new_path
+        = diff.new_path
+      - elsif diff.new_path && diff.old_path
+        #{diff.old_path} &rarr; #{diff.new_path}
+      - else
+        = diff.new_path || diff.old_path
+    %hr
+    %pre
+      = color_email_diff(diff.diff)
+    %br
+
+- if @compare.timeout
+  %h5 巨大的差异。为了防止性能的问题它被隐藏

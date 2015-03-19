@@ -1,0 +1,13 @@
+= render 'nav'
+.pull-right
+  = render 'main_links'
+%h3.page-title
+  编辑 -
+  %span.light #{@page.title}
+%hr
+= render 'form'
+
+.pull-right
+  - if @page.persisted? && can?(current_user, :admin_wiki, @project)
+    = link_to project_wiki_path(@project, @page), data: { confirm: "你确定要删除这个页面？"}, method: :delete, class: "btn btn-small btn-remove" do
+      删除此页

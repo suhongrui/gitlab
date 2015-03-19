@@ -1,0 +1,12 @@
+%h1 422
+%h3 登录使用 #{@provider} 身份验证失败
+%hr
+%p 登录失败原因 #{@error}.
+%p 可以尝试以下步骤：
+
+%ul
+  %li 尝试使用电子邮件登录
+  %li 尝试使用您的用户名登录
+  %li 如果您忘记了密码，尝试恢复其使用 #{ link_to "恢复密码", new_password_path(resource_name) }
+
+%p 如果没有的选项，请尝试GitUse管理员联系。

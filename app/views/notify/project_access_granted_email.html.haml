@@ -1,0 +1,5 @@
+%p
+  = "你被授予 #{@project_member.human_access} 访问项目权"
+%p
+  = link_to project_url(@project) do
+    = @project.name_with_namespace

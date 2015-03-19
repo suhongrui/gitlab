@@ -1,0 +1,20 @@
+= render 'nav'
+%h3.page-title
+  = @page.title
+  = render 'main_links'
+- if @page.historical?
+  .warning_message
+    这是一个老版本的页面。
+    您可以查看 #{link_to "最新版本", project_wiki_path(@project, @page)} 或浏览 #{link_to "历史", history_project_wiki_path(@project, @page)}.
+
+%hr
+
+.wiki-holder
+  .wiki
+    = preserve do
+      = render_wiki_content(@page)
+
+%hr
+
+.wiki-last-edit-by
+  最后登录 #{@page.commit.author.name} #{time_ago_with_tooltip(@page.commit.authored_date)}

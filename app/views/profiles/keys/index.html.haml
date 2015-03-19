@@ -1,0 +1,12 @@
+%h3.page-title
+  我的SSH密钥 (#{@keys.count})
+  .pull-right
+    = link_to "添加SSH密钥", new_profile_key_path, class: "btn btn-new"
+%p.light
+  SSH密钥可以建立你的电脑和GitUse之间的安全连接
+  %br
+  您增加一个SSH密钥之前你需要
+  = link_to "生成它", help_page_path("ssh", "README")
+%hr
+
+= render 'key_table'

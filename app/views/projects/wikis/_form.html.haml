@@ -1,0 +1,47 @@
+= form_for [@project, @page], method: @page.persisted? ? :put : :post, html: { class: 'form-horizontal wiki-form gfm-form' } do |f|
+  -if @page.errors.any?
+    #error_explanation
+      .alert.alert-danger
+        - @page.errors.full_messages.each do |msg|
+          %p= msg
+
+  = f.hidden_field :title, value: @page.title
+  .form-group
+    = f.label :format, '提交格式', class: 'control-label'
+    .col-sm-10
+      = f.select :format, options_for_select(ProjectWiki::MARKUPS, {selected: @page.format}), {}, class: "form-control"
+
+  .row
+    .col-sm-2
+    .col-sm-10
+      %p.cgray
+        要链接到一个（新的）页面，您可以只输入
+        %code [Link Title](page-slug)
+        \.
+
+  .form-group.wiki-content
+    = f.label :content, '提交内容', class: 'control-label'
+    .col-sm-10
+      = render layout: 'projects/md_preview', locals: { preview_class: "wiki" } do
+        = render 'projects/zen', f: f, attr: :content, classes: 'description form-control'
+        .col-sm-12.hint
+          .pull-left 维基上的内容与分析 #{link_to "GitUse风格标记符", help_page_path("markdown", "markdown"), target: '_blank'}
+          .pull-right 附加图像 (JPG, PNG, GIF) 通过拖放或 #{link_to "选择他们", '#', class: 'markdown-selector' }.
+
+      .clearfix
+      .error-alert
+  .form-group
+    = f.label :commit_message, '提交信息', class: 'control-label'
+    .col-sm-10= f.text_field :message, class: 'form-control', rows: 18
+
+  .form-actions
+    - if @page && @page.persisted?
+      = f.submit '保存更改', class: "btn-save btn"
+      = link_to "取消", project_wiki_path(@project, @page), class: "btn btn-cancel"
+    - else
+      = f.submit '创建页面', class: "btn-create btn"
+      = link_to "取消", project_wiki_path(@project, :home), class: "btn btn-cancel"
+
+:javascript
+  window.project_image_path_upload = "#{upload_image_project_path @project}";
+

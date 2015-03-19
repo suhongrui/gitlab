@@ -1,0 +1,60 @@
+%h3.page-title
+  我的项目
+
+  = link_to new_project_path, class: "btn btn-new pull-right" do
+    %i.fa.fa-plus
+    新建项目
+
+%p.light
+  所有的项目，你有机会在这里列出。公共项目不包括在这里，除非你是会员
+%hr
+.side-filters
+  = render "projects_filter"
+.dash-projects
+  %ul.bordered-list.my-projects.top-list
+    - @projects.each do |project|
+      %li.my-project-row
+        %h4.project-title
+          .pull-left
+            = project_icon(project.to_param, alt: '', class: 'avatar project-avatar s60')
+          .project-access-icon
+            = visibility_level_icon(project.visibility_level)
+          = link_to project_path(project), class: dom_class(project) do
+            = project.name_with_namespace
+
+          - if project.forked_from_project
+            &nbsp;
+            %small
+              %i.fa.fa-code-fork
+              分支来自:
+              = link_to project.forked_from_project.name_with_namespace, project_path(project.forked_from_project)
+
+          - if current_user.can_leave_project?(project)
+            .pull-right
+              = link_to leave_project_team_members_path(project), data: { confirm: "离开项目?"}, method: :delete, remote: true, class: "btn-tiny btn remove-row", title: '离开项目' do
+                %i.fa.fa-sign-out
+                离开
+
+        .project-info
+          .pull-right
+            - if project.archived?
+              %span.label
+                %i.fa.fa-archive
+                存档
+            - project.tags.each do |tag|
+              %span.label.label-info
+                %i.fa.fa-tag
+                = tag.name
+          - if project.description.present?
+            %p= truncate project.description, length: 100
+          .last-activity
+            %span.light 最后活动:
+            %span.date= project_last_activity(project)
+
+
+      - if @projects.blank?
+        %li
+          .nothing-here-block 这里没有项目。
+  .bottom
+    = paginate @projects, theme: "gitlab"
+

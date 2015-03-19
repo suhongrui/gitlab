@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+require 'rubygems'
+require 'flowdock-git-hook'
+
+before, after, ref = gets.split
+Flowdock::Git.background_post(ref, before, after)

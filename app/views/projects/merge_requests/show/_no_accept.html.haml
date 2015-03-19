@@ -1,0 +1,14 @@
+%h4
+  不能被合并
+%p
+  这个合并请求不能被接受，因为分支
+  - unless @merge_request.source_branch_exists?
+    %span.label.label-inverse= @merge_request.source_branch
+    中不存在
+    %span.label.label-info= @merge_request.source_project_path
+  - else
+    %span.label.label-inverse= @merge_request.target_branch
+    中不存在
+    %span.label.label-info= @merge_request.target_project_path
+  %br
+  %strong 请关闭此合并请求或更改现有分支
